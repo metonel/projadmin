@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Pagina admin</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -53,10 +53,11 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a href="" class="dropdown-item">Administrare cont</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Iesire cont') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -76,7 +77,8 @@
                 <div class="col-2">
 
                     <div class="btn-group-vertical"> 
-                        <button type="button" class="btn btn-lg btn-info font-weight-bold" disabled>Produse</button>                        
+
+                        <button type="button" class="btn btn-lg btn-info font-weight-bld" disabled>Produse</button>                        
                         <a href="/comenzi" class="btn btn-light text-left">Administrare comenzi</a>
                         <a href="/addprod" class="btn btn-light text-left">Adauga produse</a>
                         <a href="/product" class="btn btn-light text-left">Administrare produse</a>
@@ -84,11 +86,27 @@
                         <a href="/addprod" class="btn btn-light text-left">Administrare categoriei</a>
                         <a href="/addprod" class="btn btn-light text-left">Adauga subcategorie</a>
                         <a href="/addprod" class="btn btn-light text-left">Administrare subcategorii</a>
+
+                        <button type="button" class="btn btn-lg btn-info font-weigt-bold" disabled>Fisiere</button>                        
+                        <a href="/comenzi" class="btn btn-light text-left">Adauga fisiere</a>
+                        <a href="/addprod" class="btn btn-light text-left">Administrare fisiere</a>
+
+                        <button type="button" class="btn btn-lg btn-info font-weigt-bold" disabled>Slider</button>                        
+                        <a href="/comenzi" class="btn btn-light text-left">Adauga slide</a>
+                        <a href="/addprod" class="btn btn-light text-left">Administrare slide-uri</a>
+
+                        <button type="button" class="btn btn-lg btn-info font-weight-bld" disabled>Stiri</button>                        
+                        <a href="/comenzi" class="btn btn-light text-left">Adauga stire</a>
+                        <a href="/addprod" class="btn btn-light text-left">Administrare stire</a>
                     </div>
 
                 </div>
                 <div class="col">
+
+
                     @yield('content')
+
+
                 </div>
             </div>
         </div>
