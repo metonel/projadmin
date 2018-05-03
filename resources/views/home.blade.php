@@ -13,7 +13,7 @@
                         </div>
                     @endif --}}
 
-                @if(count($sold_products)>0)
+                {{-- @if(count($sold_products)>0) --}}
                         <h3 class="p-2">Lista produse vandute</h3>
                     <table class="table table-striped">
                         <tr>
@@ -43,9 +43,9 @@
 
                         @endforeach
                     </table>
-                @endif
+                {{-- @endif --}}
 
-                @if(count($shops)>0)
+                {{-- @if(count($shops)>0) --}}
                 <hr>
                 <h3 class="p-2">Lista magazine</h3>
                     <table class="table table-striped">
@@ -63,7 +63,7 @@
 
                         @endforeach
                     </table>
-                @endif
+                {{-- @endif --}}
 
                 </div>
             </div>
