@@ -19,10 +19,16 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/comenzi', function () {
-    return view('pagini.comenzi');
-});
+Route::get('/comenzi', 'OrderController@index');
 
 Route::get('/addprod', 'ProductController@create');
 
 Route::resource('product', 'ProductController');
+
+Route::resource('category', 'CategoryController');
+
+Route::resource('subcategorie', 'SubcategorieController');
+
+Route::resource('orders', 'OrderController');
+
+Route::resource('news', 'NewsController');

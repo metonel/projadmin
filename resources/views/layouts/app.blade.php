@@ -82,10 +82,10 @@
                         <a href="/comenzi" class="btn btn-light text-left">Administrare comenzi</a>
                         <a href="/addprod" class="btn btn-light text-left">Adauga produse</a>
                         <a href="/product" class="btn btn-light text-left">Administrare produse</a>
-                        <a href="/addprod" class="btn btn-light text-left">Adauga categorie</a>
-                        <a href="/addprod" class="btn btn-light text-left">Administrare categoriei</a>
-                        <a href="/addprod" class="btn btn-light text-left">Adauga subcategorie</a>
-                        <a href="/addprod" class="btn btn-light text-left">Administrare subcategorii</a>
+                        <a href="/category/create" class="btn btn-light text-left">Adauga categorie</a>
+                        <a href="/category" class="btn btn-light text-left">Administrare categoriei</a>
+                        <a href="/subcategorie/create" class="btn btn-light text-left">Adauga subcategorie</a>
+                        <a href="/subcategorie" class="btn btn-light text-left">Administrare subcategorii</a>
 
                         <button type="button" class="btn btn-lg btn-info font-weigt-bold" disabled>Fisiere</button>                        
                         <a href="/comenzi" class="btn btn-light text-left">Adauga fisiere</a>
@@ -96,8 +96,8 @@
                         <a href="/addprod" class="btn btn-light text-left">Administrare slide-uri</a>
 
                         <button type="button" class="btn btn-lg btn-info font-weight-bld" disabled>Stiri</button>                        
-                        <a href="/comenzi" class="btn btn-light text-left">Adauga stire</a>
-                        <a href="/addprod" class="btn btn-light text-left">Administrare stire</a>
+                        <a href="/news/create" class="btn btn-light text-left">Adauga stire</a>
+                        <a href="/news" class="btn btn-light text-left">Administrare stire</a>
                     </div>
 
                 </div>

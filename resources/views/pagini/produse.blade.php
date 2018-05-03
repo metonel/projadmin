@@ -21,15 +21,34 @@
                             </tr>
                             @foreach($products as $product)
                                 <tr>
-                                    <td><img src="/storage/imagini/{{$product->images}}" alt=""></td>
+                                    <td><img src="/storage/imagini/{{$product->images}}" alt="" class="img-fluid"></td>
                                     <td class="align-middle">{{$product->id}}</td>
                                     <td class="align-middle">{{$product->name}}</td>
-                                    <td class="align-middle">{{$product->category}}</td>
+                                    <td class="align-middle">
+                                        @foreach($categories as $category)
+                                            @if($product->category === $category->id)
+                                                {{$category->name}}
+                                            @endif
+                                        @endforeach
+                                        
+                                        @foreach($subcategories as $subcategory)
+                                            @if($product->subcategory === $subcategory->id)
+                                                @if($product->subcategory >0 )
+                                                    ->{{$subcategory->name}}
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </td>
                                     <td class="align-middle">{{$product->display_order}}</td>
                                     <td class="align-middle">{{$product->created_at}}</td>   
                                     <td class="align-middle">
-                                        <img src="/brand/edit.svg" alt="">
-                                        <img src="/brand/del.svg" alt="">
+                                        <a href="/product/{{$product->id}}/edit"><img src="/brand/edit.svg" alt=""></a>
+                                        {!! Form::open(['action' => ['ProductController@destroy', $product->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Sigur stergeti produsul?")']) !!}
+                                            {{-- {{Form::hidden}} --}}
+                                            {{Form::submit(' ', ['style' => 'background:url(/brand/del.svg) no-repeat; padding-right: 12px; border: none; '])}}
+                                        {!! Form::close() !!}
+                                        
+                                        {{-- <img src="/brand/del.svg" alt=""> --}}
                                         <img src="/brand/foto.svg" alt="">
                                     </td>
                                 </tr>

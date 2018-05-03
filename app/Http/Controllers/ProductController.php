@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
+use App\Subcategorie;
 
 class ProductController extends Controller
 {
@@ -20,7 +22,10 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('pagini.produse')->with('products', $products);
+        $categories = Category::all();
+        $subcategories = Subcategorie::all();
+        return view('pagini.produse', ['products' => $products, 'categories' => $categories, 'subcategories' => $subcategories]);
+        // return view('pagini.produse')->with('products', $products);
     }
 
     /**
@@ -30,7 +35,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('pagini.addprod');
+        $categories = Category::pluck('name', 'id')->toArray();
+        $subcategories = Subcategorie::pluck('name', 'id')->toArray();
+        return view('pagini.addprod', ['categories' => $categories, 'subcategories' => $subcategories]);
     }
 
     /**
@@ -104,7 +111,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::pluck('name', 'id')->toArray();
+        $subcategories = Subcategorie::pluck('name', 'id')->toArray();
+        $product = Product::find($id);
+        return view('/pagini/editprod', ['categories' => $categories, 'subcategories' => $subcategories, 'product' => $product]);
     }
 
     /**
@@ -116,7 +126,50 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this -> validate($request, [
+            'name' => 'required',
+            'sell_price' => 'required',
+            'images' => 'image|nullable|max:1999',
+            'description' => 'nullable'
+        ]);
+        $product = Product::find($id);
+
+            if($request->hasFile('images')){
+                $filenameWithExt = $request->file('images')->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $ext = $request->file('images')->getClientOriginalExtension();
+                $filenameToStore = $filename.'_'.time().'.'.$ext;
+                $path = $request->file('images')->storeAs('public/imagini', $filenameToStore);
+            } else {
+                $filenameToStore = $product->images;
+            }
+
+        $product = Product::find($id);
+        $product->name = $request->input('name');
+        $product->sell_price = $request->input('sell_price');
+        $product->currency = $request->input('currency');
+        $product->category = $request->input('category');
+        $product->subcategory = $request->input('subcategory');
+        $product->images = $filenameToStore;
+        $product->description = $request->input('description');
+        $product->show = $request->input('show');
+        $product->display_order = $request->input('display_order');
+        $product->shop_id = 1;
+        $product->code = $request->input('code');
+        $product->aquisition_price = 200;
+        $product->discount = 0;
+        $product->size = '200x150';
+        $product->sizes = 0;
+        $product->colors = 0;
+        $product->quantity = 0;
+        $product->tags = '';
+        $product->same = 1;
+        $product->special = 1;
+        $product->added_by = auth()->user()->id;
+        $product->last_updated = now();
+        $product->last_visited = now();       
+        $product->save();
+        return redirect('/product')->with('success', 'Produsul a fost modificat');
     }
 
     /**
@@ -127,6 +180,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('/product')->with('success', 'Produsul a fost sters');
     }
 }
