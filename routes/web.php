@@ -32,3 +32,5 @@ Route::resource('subcategorie', 'SubcategorieController');
 Route::resource('orders', 'OrderController');
 
 Route::resource('news', 'NewsController');
+
+Route::resource('slider', 'SliderController');

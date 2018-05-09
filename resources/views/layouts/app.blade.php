@@ -92,8 +92,8 @@
                         <a href="/addprod" class="btn btn-light text-left">Administrare fisiere</a>
 
                         <button type="button" class="btn btn-lg btn-info font-weigt-bold" disabled>Slider</button>                        
-                        <a href="/comenzi" class="btn btn-light text-left">Adauga slide</a>
-                        <a href="/addprod" class="btn btn-light text-left">Administrare slide-uri</a>
+                        <a href="/slider/create" class="btn btn-light text-left">Adauga slide</a>
+                        <a href="/slider" class="btn btn-light text-left">Administrare slide-uri</a>
 
                         <button type="button" class="btn btn-lg btn-info font-weight-bld" disabled>Stiri</button>                        
                         <a href="/news/create" class="btn btn-light text-left">Adauga stire</a>
