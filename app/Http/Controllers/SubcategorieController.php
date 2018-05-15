@@ -77,7 +77,9 @@ class SubcategorieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subcategorie = Subcategorie::find($id);
+        $categories = Category::pluck('name', 'id')->toArray();
+        return view('/pagini/editsubcategorii', ['subcategorie' => $subcategorie, 'categories' => $categories]);
     }
 
     /**
@@ -88,8 +90,21 @@ class SubcategorieController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {        
+        $this -> validate($request, [
+            'name' => 'required',
+            'category_id' => 'required',
+            'position' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $subcategorie = Subcategorie::find($id);
+        $subcategorie->category_id = $request->input('category_id');
+        $subcategorie->name = $request->input('name');
+        $subcategorie->description = $request->input('description');
+        $subcategorie->position = $request->input('position');
+        $subcategorie->save();
+        return redirect('/subcategorie')->with('success', 'Subcategoria a fost modificata');
     }
 
     /**
@@ -100,6 +115,8 @@ class SubcategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subcategorie = Subcategorie::find($id);
+        $subcategorie->delete();
+        return redirect('/subcategorie')->with('success', 'Subcategoria a fost stearsa');
     }
 }

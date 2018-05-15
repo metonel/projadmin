@@ -19,9 +19,11 @@
                                     <td class="align-middle">{{$category->name}}</td>
                                     <td class="align-middle">{{$category->position}}</td> 
                                     <td class="align-middle">
-                                        <img src="/brand/edit.svg" alt="">
-                                        <img src="/brand/del.svg" alt="">
-                                        <img src="/brand/foto.svg" alt="">
+                                        <a href="/category/{{$category->id}}/edit"><img src="/brand/edit.svg" alt=""></a>
+                                        {!! Form::open(['action' => ['CategoryController@destroy', $category->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Sigur stergeti categoria?")']) !!}
+                                            {{-- {{Form::hidden}} --}}
+                                            {{Form::submit(' ', ['style' => 'background:url(/brand/del.svg) no-repeat; padding-right: 12px; border: none; '])}}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
     

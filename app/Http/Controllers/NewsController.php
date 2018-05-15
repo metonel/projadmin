@@ -87,8 +87,9 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {        
+        $news = News::find($id);
+        return view('/pagini/editstiri', ['news' => $news]);
     }
 
     /**
@@ -100,7 +101,33 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this -> validate($request, [
+            'title' => 'required',
+            'subtitle' => 'required',
+            'images' => 'image|nullable|max:1999',
+            'text' => 'required'
+        ]);
+        
+        $news = News::find($id);
+            if($request->hasFile('images')){
+                $filenameWithExt = $request->file('images')->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $ext = $request->file('images')->getClientOriginalExtension();
+                $filenameToStore = $filename.'_'.time().'.'.$ext;
+                $path = $request->file('images')->storeAs('public/imagini', $filenameToStore);
+            } else {
+                $filenameToStore = $news->filename;
+            }
+
+        $news->title = $request->input('title');
+        $news->subtitle = $request->input('subtitle');
+        $news->filename = $filenameToStore;
+        $news->text = $request->input('text');
+        $news->added_by = auth()->user()->id;
+        $news->changed_by = auth()->user()->id;    
+        $news->last_change = now();
+        $news->save();
+        return redirect('/news')->with('success', 'Stirea a fost modificata');
     }
 
     /**
@@ -111,6 +138,8 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $news = News::find($id);
+        $news->delete();
+        return redirect('/news')->with('success', 'Stirea a fost stearsa');
     }
 }

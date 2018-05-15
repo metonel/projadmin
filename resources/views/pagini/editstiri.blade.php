@@ -8,15 +8,15 @@
             <div class="card">
 
                 <div class="card-body">
-                    <h2>Adaugare stire</h2>
-                    {!! Form::open(['action' => 'NewsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                    <h2>Editare stire</h2>
+                    {!! Form::open(['action' => ['NewsController@update', $news->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                         <div class="form-group">
                             {{Form::label('title', 'Titlu:')}}
-                            {{Form::text('title', '', ['class' => 'form-control'])}}
+                            {{Form::text('title', $news->title, ['class' => 'form-control'])}}
                         </div> 
                         <div class="form-group">
                             {{Form::label('subtitle', 'Subtitlu:')}}
-                            {{Form::text('subtitle', '', ['class' => 'form-control'])}}
+                            {{Form::text('subtitle', $news->subtitle, ['class' => 'form-control'])}}
                         </div>   
                         <div class="form-group">
                                 {{Form::label('images', 'Imagine:')}}
@@ -24,10 +24,10 @@
                         </div>  
                         <div class="form-group">
                             {{Form::label('text', 'Text:')}}
-                            {{Form::textarea('text', '', ['id' => 'article-ckeditor', 'class' => 'form-control'])}}
+                            {{Form::textarea('text', $news->text, ['id' => 'article-ckeditor', 'class' => 'form-control'])}}
                         </div> 
 
-                        {{Form::submit('Adauga stire', ['class' => 'btn btn-primary btn-block'])}}
+                        {{Form::submit('Salveaza modificarile', ['class' => 'btn btn-primary btn-block'])}}
                     {!! Form::close() !!}
                 </div>
             </div>

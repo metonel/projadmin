@@ -83,7 +83,7 @@
                         <a href="/addprod" class="btn btn-light text-left">Adauga produse</a>
                         <a href="/product" class="btn btn-light text-left">Administrare produse</a>
                         <a href="/category/create" class="btn btn-light text-left">Adauga categorie</a>
-                        <a href="/category" class="btn btn-light text-left">Administrare categoriei</a>
+                        <a href="/category" class="btn btn-light text-left">Administrare categorii</a>
                         <a href="/subcategorie/create" class="btn btn-light text-left">Adauga subcategorie</a>
                         <a href="/subcategorie" class="btn btn-light text-left">Administrare subcategorii</a>
 

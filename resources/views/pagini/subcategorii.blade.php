@@ -21,9 +21,11 @@
                                     <td class="align-middle">{{$subcategorie->position}}</td> 
                                     <td class="align-middle">{{$subcategorie->position}}</td> 
                                     <td class="align-middle">
-                                        <img src="/brand/edit.svg" alt="">
-                                        <img src="/brand/del.svg" alt="">
-                                        <img src="/brand/foto.svg" alt="">
+                                        <a href="/subcategorie/{{$subcategorie->id}}/edit"><img src="/brand/edit.svg" alt=""></a>
+                                        {!! Form::open(['action' => ['SubcategorieController@destroy', $subcategorie->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Sigur stergeti subcategoria?")']) !!}
+                                            {{-- {{Form::hidden}} --}}
+                                            {{Form::submit(' ', ['style' => 'background:url(/brand/del.svg) no-repeat; padding-right: 12px; border: none; '])}}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
     

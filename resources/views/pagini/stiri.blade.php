@@ -22,10 +22,11 @@
                                     <td class="align-middle">{{$stire->subtitle}}</td> 
                                     <td class="align-middle">{{$stire->created_at}}</td> 
                                     <td class="align-middle">
-                                        <img src="/brand/edit.svg" alt="">
-                                        <img src="/brand/del.svg" alt="">
-                                        <img src="/brand/foto.svg" alt="">
-                                    </td>
+                                        <a href="/news/{{$stire->id}}/edit"><img src="/brand/edit.svg" alt=""></a>
+                                        {!! Form::open(['action' => ['NewsController@destroy', $stire->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Sigur stergeti stirea?")']) !!}
+                                            {{-- {{Form::hidden}} --}}
+                                            {{Form::submit(' ', ['style' => 'background:url(/brand/del.svg) no-repeat; padding-right: 12px; border: none; '])}}
+                                        {!! Form::close() !!}
                                 </tr>
     
                             @endforeach

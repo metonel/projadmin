@@ -9,21 +9,21 @@
 
                 <div class="card-body">
                     <h2>Adaugare categorie</h2>
-                    {!! Form::open(['action' => 'CategoryController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['action' => ['CategoryController@update', $category->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                         <div class="form-group">
                             {{Form::label('name', 'Denumire')}}
-                            {{Form::text('name', '', ['class' => 'form-control'])}}
+                            {{Form::text('name', $category->name, ['class' => 'form-control'])}}
                         </div> 
                         <div class="form-group">
                             {{Form::label('position', 'Pozitie')}}
-                            {{Form::text('position', '', ['class' => 'form-control', 'placeholder' => 'se completeaza numeric'])}}
+                            {{Form::text('position', $category->position, ['class' => 'form-control', 'placeholder' => 'se completeaza numeric'])}}
                         </div> 
                         <div class="form-group">
                             {{Form::label('description', 'Descriere')}}
-                            {{Form::textarea('description', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Descriere categorie'])}}
+                            {{Form::textarea('description', $category->description, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Descriere categorie'])}}
                         </div>   
 
-                        {{Form::submit('Adauga categorie', ['class' => 'btn btn-primary btn-block'])}}
+                        {{Form::submit('Salveaza modificari', ['class' => 'btn btn-primary btn-block'])}}
                     {!! Form::close() !!}
                     <hr>
                     <h3>Detalii:</h3>

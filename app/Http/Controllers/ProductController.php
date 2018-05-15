@@ -144,7 +144,6 @@ class ProductController extends Controller
                 $filenameToStore = $product->images;
             }
 
-        $product = Product::find($id);
         $product->name = $request->input('name');
         $product->sell_price = $request->input('sell_price');
         $product->currency = $request->input('currency');

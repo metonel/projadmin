@@ -27,7 +27,7 @@
                                     <td class="align-middle">{{$slide->created_at}}</td>   
                                     <td class="align-middle">
                                         <a href="/slider/{{$slide->id}}/edit"><img src="/brand/edit.svg" alt=""></a>
-                                        {!! Form::open(['action' => ['SliderController@destroy', $slide->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Sigur stergeti produsul?")']) !!}
+                                        {!! Form::open(['action' => ['SliderController@destroy', $slide->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Sigur stergeti slide-ul?")']) !!}
                                             {{-- {{Form::hidden}} --}}
                                             {{Form::submit(' ', ['style' => 'background:url(/brand/del.svg) no-repeat; padding-right: 12px; border: none; '])}}
                                         {!! Form::close() !!}

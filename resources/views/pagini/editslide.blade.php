@@ -9,10 +9,10 @@
 
                 <div class="card-body">
                     <h2>Editeaza slide</h2>
-                    {!! Form::open(['action' => 'SliderController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['action' => ['SliderController@update', $slide->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                         <div class="form-group">
                             {{Form::label('url', 'URL slide:')}}
-                            {{Form::text('url', '', ['class' => 'form-control', 'placeholder' => 'se completeaza cu http://'])}}
+                            {{Form::text('url', $slide->url, ['class' => 'form-control'])}}
                         </div>   
                         <div class="form-group">
                                 {{Form::label('images', 'Slide (imagine):')}}
@@ -20,10 +20,10 @@
                         </div>  
                         <div class="form-group">
                             {{Form::label('position', 'Pozitie:')}}
-                            {{Form::text('position', '', ['class' => 'form-control', 'placeholder' => 'se afiseaza in ordine descrescatoare'])}}
+                            {{Form::text('position', $slide->position, ['class' => 'form-control', 'placeholder' => 'se afiseaza in ordine descrescatoare'])}}
                         </div>  
 
-                        {{Form::submit('Adauga slide', ['class' => 'btn btn-primary btn-block'])}}
+                        {{Form::submit('Salveaza modificari', ['class' => 'btn btn-primary btn-block'])}}
                     {!! Form::close() !!}
                 </div>
             </div>

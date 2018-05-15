@@ -87,7 +87,7 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        $slide = Slide::find($id);
+        $slide = Slider::find($id);
         return view('/pagini/editslide', ['slide' => $slide]);
     }
 
@@ -100,7 +100,31 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $this -> validate($request, [
+            'position' => 'required',
+            'images' => 'image|nullable|max:1999'
+        ]);
+
+        $slide = Slider::find($id);
+
+        if($request->hasFile('images')){
+            $filenameWithExt = $request->file('images')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $ext = $request->file('images')->getClientOriginalExtension();
+            $filenameToStore = $filename.'_'.time().'.'.$ext;
+            $path = $request->file('images')->storeAs('public/imagini', $filenameToStore);
+        } else {
+            $filenameToStore = $slide->filename;
+        }
+        
+        $slide->url = $request->input('url');
+        $slide->position = $request->input('position');
+        $slide->filename = $filenameToStore;
+        $slide->added_by = auth()->user()->id;
+        $slide->last_change = now();       
+        $slide->save();
+        return redirect('/slider')->with('success', 'Slide modificat');
     }
 
     /**
@@ -111,6 +135,9 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $slide = Slider::find($id);
+        $slide->delete();
+        return redirect('/slider')->with('success', 'Slide sters');
+        
     }
 }
